@@ -3,6 +3,8 @@ from collections import UserDict
 from pprint import pprint
 import pickle
 
+FILENAME = 'AddresBook.dat'
+
 def _create_date(*, year, month, day):
     return datetime(year=year, month=month, day=day).date()
 
@@ -67,8 +69,8 @@ class Phone(Field):
 class AddressBook(UserDict):
     __items_per_page = 15
 
-    def __init__(self, filename):
-        self.filename = filename
+    def __init__(self):
+        self.filename = FILENAME
         
     def items_per_page(self, value):
         self.__items_per_page = value
