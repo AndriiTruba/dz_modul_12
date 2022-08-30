@@ -67,6 +67,9 @@ class Phone(Field):
 class AddressBook(UserDict):
     __items_per_page = 15
 
+    def __init__(self, filename):
+        self.filename = filename
+        
     def items_per_page(self, value):
         self.__items_per_page = value
         
@@ -91,13 +94,11 @@ class AddressBook(UserDict):
                 return record
         return None
 
-    def write_contacts_to_AddressBook(self, filename: str):
-        self.filename = filename
-
+    def write_contacts_to_AddressBook(self):
         with open(self.filename, "wb") as file:
             pickle.dump(self, file)
 
-    def read_contacts_from_file(self):
+    def read_contacts_from_AddresBook(self):
         with open(self.filename, "rb") as file:
             contact = pickle.load(file)
             return contact
